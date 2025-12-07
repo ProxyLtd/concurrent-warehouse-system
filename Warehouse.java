@@ -36,14 +36,14 @@ public class Warehouse {
 
     public synchronized String processCommand(String threadName, String theInput) {
         
-        System.out.print(threadName + " recieved: " + theInput);
+        System.out.print(threadName + " received: " + theInput);
         String theOutput = null;
 
         String input = theInput.trim().toUpperCase();
 
         if (input.startsWith("BUY_APPLES")) {
             try {
-                int amount = Integer.parseInt(input.split("")[1]);
+                int amount = Integer.parseInt(input.split(" ")[1]);
                 apples -= amount;
 
                 System.out.println(threadName + " bought " + amount + " apples. New total: " + apples);
@@ -73,7 +73,7 @@ public class Warehouse {
                 apples += amount;
 
                 System.out.println(threadName + " added " + amount + " apples. New total: " + apples);
-                theOutput = "Added " + amount + " apples. Stock now: apples=" + apples + ", oranges=" + oranges;
+                theOutput = " Added " + amount + " apples. Stock now: apples=" + apples + ", oranges=" + oranges;
             } catch (Exception e) {
                 theOutput = "Invalid ADD_APPLES command. Use: ADD_APPLES <number>";
             }
@@ -85,7 +85,7 @@ public class Warehouse {
                 oranges += amount;
 
                 System.out.println(threadName + "added " + amount + "oranges. New total: " + oranges);
-                theOutput = "Added " + amount + " oranges. Stock now: apples=" + apples + ", oranges=" + oranges;
+                theOutput = " Added " + amount + " oranges. Stock now: apples=" + apples + ", oranges=" + oranges;
             } catch (Exception e) {
                 theOutput = "Invalid ADD_ORANGES command. Use: ADD_ORANGES <number>";
             }
@@ -103,7 +103,7 @@ public class Warehouse {
         else {
             theOutput = "Unknown command. Try: BUY_APPLES (X), BUY_ORANGES (X), ADD_APPLES (X), ADD_ORANGES (X), CHECK_STOCK, QUIT";
         }
-        
+
         return theOutput;
     }
     
