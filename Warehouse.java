@@ -36,7 +36,7 @@ public class Warehouse {
 
     public synchronized String processCommand(String threadName, String theInput) {
         
-        System.out.print(threadName + " received: " + theInput);
+        System.out.println(threadName + " received: " + theInput);
         String theOutput = null;
 
         String input = theInput.trim().toUpperCase();
@@ -73,7 +73,7 @@ public class Warehouse {
                 apples += amount;
 
                 System.out.println(threadName + " added " + amount + " apples. New total: " + apples);
-                theOutput = " Added " + amount + " apples. Stock now: apples=" + apples + ", oranges=" + oranges;
+                theOutput = "Added " + amount + " apples. Stock now: apples=" + apples + ", oranges=" + oranges;
             } catch (Exception e) {
                 theOutput = "Invalid ADD_APPLES command. Use: ADD_APPLES <number>";
             }
@@ -84,8 +84,8 @@ public class Warehouse {
                 int amount = Integer.parseInt(input.split(" ")[1]);
                 oranges += amount;
 
-                System.out.println(threadName + "added " + amount + "oranges. New total: " + oranges);
-                theOutput = " Added " + amount + " oranges. Stock now: apples=" + apples + ", oranges=" + oranges;
+                System.out.println(threadName + " added " + amount + " oranges. New total: " + oranges);
+                theOutput = "Added " + amount + " oranges. Stock now: apples=" + apples + ", oranges=" + oranges;
             } catch (Exception e) {
                 theOutput = "Invalid ADD_ORANGES command. Use: ADD_ORANGES <number>";
             }
